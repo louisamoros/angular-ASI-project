@@ -1,0 +1,23 @@
+{
+  "name": "ASI_sbs",
+  "homepage": "https://github.com/gnostrenoff/ASI_sbs",
+  "authors": [
+    "louis <amoros.louis@gmail.com>"
+  ],
+  "description": "project",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "bootstrap": "~3.3.5",
+    "angular-route": "~1.4.7"
+  }
+}
