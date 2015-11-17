@@ -27,19 +27,6 @@ function authFnc($http, $q) {
 				console.log('good jooooooooooooooooob');
 				console.log(data);
 
-				//go to welcome admin/watcher
-				if(data.role == 'admin')
-				{
-					//got to welcome admin
-				}
-				else if(data.role == 'watcher')
-				{
-					//got to welcome watcher
-				}
-				else{
-					//go nowhere
-				}
-
 				deferred.resolve(data);
 
 			}).
