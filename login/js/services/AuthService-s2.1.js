@@ -21,29 +21,34 @@ function authFnc($http, $q) {
 
 		var deferred = $q.defer(); 
 
-		/*setInterval(function(login,pwd){
-
-			var response = {};
-
-			if(login in userMap && userMap[login][0]==pwd){ 
-				response['login'] = login;
-				response['validAuth'] = true;
-				response['role'] = userMap[login][1];
-				deferred.resolve(response);
-            }else{
-                 deferred.reject();
-			}
-
-			clearInterval(this); 
-
-		},3000,login,pwd);*/
-
 		$http.post('http://localhost:5000/',{'login':login,'pwd':pwd}).
 			success(function(data, status, headers, config) { 
+				//user successfully logged
 				console.log('good jooooooooooooooooob');
+				console.log(data);
+
+				//go to welcome admin/watcher
+				if(data.role == 'admin')
+				{
+					//got to welcome admin
+				}
+				else if(data.role == 'watcher')
+				{
+					//got to welcome watcher
+				}
+				else{
+					//go nowhere
+				}
+
+				deferred.resolve(data);
+
 			}).
 			error(function(data, status, headers, config) {
+				//unknown user ...
 				console.log('bad joooooooooooooooob');
+				console.log(data);
+
+				deferred.reject(data);
 			});
 
         return deferred.promise;

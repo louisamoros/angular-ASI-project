@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="adminApp" ng-controller="eventCtrl"> <head>
+<title>Bootstrap 101 Template</title>
+    <!-- Bootstrap -->
+<link href="lib/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet"> <link href="css/js.css" rel="stylesheet">
+  </head>
+  <body>
+<div class="container-fluid fullScreenHeight zeroRef" > <div class="row container-fluid fullScreenHeight ">
+<!-- ************* LEFT PANEL *************-->
+<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 zeroRef fullScreenHeight divOverflow" > <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<div class="btn-group" role="group" aria-label="...">
+<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-
+edit" aria-hidden="true"></span></button> </div>
+<div class="btn-group" role="group" aria-label="...">
+<button type="button" class="btn btn-default" ng-click="savePres()"><span
+class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+<button type="button" class="btn btn-default" ng-click="newSlide()"><span
+class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-
+remove" aria-hidden="true"></span></button> </div>
+<div class="form-group">
+<label for="currentPresTitle">Title</label>
+<input type="text" ng-model="currentPresenation.title" class="form-control"
+id="currentPresTitle"> </div>
+</div>
+// TODO LATER
+</div>
+<script src="lib/js/jquery-1.11.3.min.js"></script>
+<!-- ANGULAR -->
+<script src="lib/js/angular.min.js"></script>
+<script src="js/services/FactoryService-s3.1.js"></script>
+<script src="js/application/AdminApp-s3.1.js"></script>
+<script src="js/controllers/EventController-s3.1.js"></script>
+
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../bower_components/angular-route/angular-route.js"></script>
+
+<script src="js/services/AuthService-s2.1.js"></script>
+<script src="js/applications/LoginApp-s1.2.js"></script>
+<script src="js/controllers/LoginController-s1.1.js"></script>
+</body>
+</html>
