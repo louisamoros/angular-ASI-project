@@ -25,7 +25,7 @@ function Slide (json) {
 	// PUBLIC PROPERTIES -- ANYONE MAY READ/WRITE => constructor
 	// ************************************************************************
 	this.type = "";
-	this.id = utils.generateUUID();
+	this.id = "";
 	this.title = "";
 	this.contentMap = {};
 }

@@ -25,7 +25,7 @@ function Content (json) {
 	// PUBLIC PROPERTIES -- ANYONE MAY READ/WRITE => constructor
 	// ************************************************************************
 	this.type = "";
-	this.id = utils.generateUUID();
+	this.id = "";
 	this.src = "";
 	this.title = "";
 }

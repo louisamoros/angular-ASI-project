@@ -25,9 +25,10 @@ function Presentation (json) {
 	// PUBLIC PROPERTIES -- ANYONE MAY READ/WRITE => constructor
 	// ************************************************************************
 	this.type = "";
-	this.id = utils.generateUUID();
+	this.id = "";
 	this.description = "";
 	this.slidArray = {};
 }
 
 module.exports = Presentation;
+gi
