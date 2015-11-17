@@ -34,7 +34,7 @@ function contentCreation(title,type,src){
 
 function slidCreation(title,txt){
 // TODO
-￼};
+};
 
 function presentationCreation(title,description){
 // TODO
