@@ -4,13 +4,13 @@ angular.module('loginApp').controller('loginCtrl',loginCrtFnt);
 
 loginCrtFnt.$inject=['$scope','$log', 'auth', '$window'];
 
-function loginCrtFnt($scope, $log, auth, $window){ 
+function loginCrtFnt($scope, $log, auth, $window){
 	$scope.logAuth = function() {
 
 		if($scope.user == undefined)
 			$log.info('user info needed!');
 		else{
-			$log.info('user login', $scope.user.login); 
+			$log.info('user login', $scope.user.login);
 			$log.info('user pwd', $scope.user.pwd);
 		}
 
@@ -18,10 +18,10 @@ function loginCrtFnt($scope, $log, auth, $window){
 		auth.authAsk($scope.user.login, $scope.user.pwd).then(
 			function(data){
 				if(data.role == 'admin')
-					$window.location.href = 'http://www.google.com';
+					$window.location.href = 'admin.html';
 				else if(data.role == 'watcher')
-					$window.location.href = 'https://www.facebook.com/';
-				//should not happen 
+					$window.location.href = 'watcher';
+				//should not happen
 				else
 					$window.alert('you are registered but we dont know who you are');
 			},
@@ -29,7 +29,7 @@ function loginCrtFnt($scope, $log, auth, $window){
 				$window.alert(data);
 			}
 		);
-	
-	}; 
+
+	};
 
 }

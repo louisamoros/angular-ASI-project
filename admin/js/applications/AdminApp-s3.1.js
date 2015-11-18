@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('adminApp', ['factoryServices']);
+angular.module('adminApp', ['factoryServices', 'commServices']);

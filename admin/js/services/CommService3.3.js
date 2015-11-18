@@ -12,16 +12,16 @@ function commFnc(factory){
 	};
 
 	var contentMap={};
-	contentMap[factory.generateUUID()]={'../images/loulou.jpeg'};
-	ccontentMap[factory.generateUUID()]={'../images/chatfou.jpg'};
-	contentMap[factory.generateUUID()]={'../images/gorille.jpg'};
+	contentMap[factory.generateUUID()]= '../images/loulou.jpeg';
+	contentMap[factory.generateUUID()]= '../images/chatfou.jpg' ;
+	contentMap[factory.generateUUID()]= '../images/gorille.jpg' ;
 
 
 	function loadImages(presName,presID){
 
-		setInterval(function(login,pwd){
+		setInterval(function(){
 			clearInterval(this);
-		},3000,login,pwd);
+		},3000);
 
 			return contentMap;
 	};

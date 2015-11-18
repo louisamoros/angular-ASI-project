@@ -2,9 +2,9 @@
 
 angular.module('adminApp').controller('eventCtrl',eventCrtFnt);
 
-eventCrtFnt.$inject=['$scope','$log', 'factory', '$window'];
+eventCrtFnt.$inject=['$scope','$log', 'factory', '$window', 'comm'];
 
-function eventCrtFnt($scope, $log, factory, $window){
+function eventCrtFnt($scope, $log, factory, $window, comm){
 
 	$scope.currentPresentation = factory.presentationCreation();
 	//$scope.imageMap = comm.loadImages($scope.currentPresentation.title, $scope.currentPresentation.id);
