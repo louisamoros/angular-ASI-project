@@ -1,9 +1,6 @@
 "use strict"
 
 var utils = require("./../utils/utils");
-var CONFIG = JSON.parse(process.env.CONFIG);
-var relativePresentationDirectory = __dirname + CONFIG.presentationDirectory;
-var relativeContentDirectory = __dirname + CONFIG.contentDirectory;
 
 function Content (json) {
 

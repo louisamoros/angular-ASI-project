@@ -1,9 +1,6 @@
 "use strict"
 
 var utils = require("./../utils/utils");
-var CONFIG = JSON.parse(process.env.CONFIG);
-var relativePresentationDirectory = __dirname + CONFIG.presentationDirectory;
-var relativeContentDirectory = __dirname + CONFIG.contentDirectory;
 
 function Slide (json) {
 
@@ -24,7 +21,7 @@ function Slide (json) {
 	// ************************************************************************
 	// PUBLIC PROPERTIES -- ANYONE MAY READ/WRITE => constructor
 	// ************************************************************************
-	this.type = "";
+	this.txt = "";
 	this.id = "";
 	this.title = "";
 	this.contentMap = {};

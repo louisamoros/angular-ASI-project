@@ -6,6 +6,9 @@
   <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
 </head>
 <body>
+  <div class="container-fluid fullScreenHeight zeroRef" >
+    <div class="row container-fluid fullScreenHeight ">
+
   <!-- ************* LEFT PANEL *************-->
   <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -27,11 +30,41 @@
       </div>
       <div class="form-group">
         <label for="currentPresTitle">Title</label>
-        <input type="text" ng-model="currentPresenation.title" class="form-control" id="currentPresTitle">
+        <input type="text" ng-model="currentPresentation.title" class="form-control" id="currentPresTitle">
       </div>
+
+    <div class="slidList" ng-repeat="slide in currentPresentation.slidArray">
+    <h4> {{ slide.title }}</h4>
+    <img ng-src="{{ slide.content.src }}" ng-click="selectCurrentSlid(slide)" alt="" class="img-responsive">
     </div>
-    // TODO LATER
+
   </div>
+  </div>
+
+  <!-- ************* CENTER PANEL *************-->
+<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 zeroReffullScreenHeight" >
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+</div>
+
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 fullScreenHeight">
+  <div>
+    <div class="form-group">
+      <label for="currentSlideTitle">Title</label>
+      <input type="text" ng-model="currentSlide.title" class="form-control" id="currentSlideTitle">
+      <label for="currentSlideTxt">Description</label>
+      <input type="text" ng-model="currentSlide.txt" class="form-control" id="currentSlideTxt">
+    </div>
+    <div>
+      <img ng-show="currentSlide.content" ng-src="{{currentSlide.content.src}}" alt="" class="img-responsive">
+      <div ng-show="!currentSlide.content && currentSlide">NO IMAGE SET</div>
+    </div>
+  </div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
 
   <!-- bower_components -->
   <script src="../bower_components/jquery/dist/jquery.js"></script>

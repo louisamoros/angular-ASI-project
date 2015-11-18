@@ -1,18 +1,18 @@
 'use strict';
 
 var contentType={}
-	contentType.IMG_URL="IMG_URL"; 
+	contentType.IMG_URL="IMG_URL";
 	contentType.IMG_B64="IMG_B64";
 
 angular.module('factoryServices', []).factory('factory',factoryFnc);
 
-function factoryFnc(){ 
+function factoryFnc(){
 	var factory = {
 
 		generateUUID: generateUUID,
-		contentCreation: contentCreation, 
-		slidCreation: slidCreation, 
-		presentationCreation: presentationCreation, 
+		contentCreation: contentCreation,
+		slidCreation: slidCreation,
+		presentationCreation: presentationCreation,
 		mapToArray: mapToArray
 	};
 
@@ -25,28 +25,52 @@ function generateUUID(){
 		d = Math.floor(d/16);
 		return (c=='x' ? r : (r&0x3|0x8)).toString(16);
 	});
-	return uuid; 
+	return uuid;
 };
 
-function contentCreation(title,type,src){ 
-// TODO
+function contentCreation(title,type,src){
+
+	var content = {};
+	content.id = generateUUID();
+	content.type = type;
+	content.title = title;
+	content.src = src;
+
+	return content;
+
 };
 
 function slidCreation(title,txt){
-// TODO
+
+	var slide = {};
+	slide.id = generateUUID();
+	slide.txt = txt;
+	slide.title = title;
+	slide.content = {};
+
+	return slide;
+
 };
 
 function presentationCreation(title,description){
-// TODO
+
+	var presentation = {};
+	presentation.id = generateUUID();
+	presentation.title = title;
+	presentation.description = description;
+	presentation.slidArray = {};
+
+	return presentation;
+
 };
 
-function mapToArray(map){ 
-	contentArray=[]; 
+function mapToArray(map){
+	contentArray=[];
 	for(key in map){
-		contentArray.push(map[key]); 
+		contentArray.push(map[key]);
 	}
-	return contentArray; 
+	return contentArray;
 };
 
-return factory; 
+return factory;
 };
