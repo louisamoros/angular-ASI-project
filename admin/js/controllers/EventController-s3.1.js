@@ -7,7 +7,7 @@ eventCrtFnt.$inject=['$scope','$log', 'factory', '$window', 'comm'];
 function eventCrtFnt($scope, $log, factory, $window, comm){
 
 	$scope.currentPresentation = factory.presentationCreation();
-	//$scope.imageMap = comm.loadImages($scope.currentPresentation.title, $scope.currentPresentation.id);
+	$scope.contentMap = comm.loadImages($scope.currentPresentation.title, $scope.currentPresentation.id);
 
 	$scope.savePres = function() {
 
