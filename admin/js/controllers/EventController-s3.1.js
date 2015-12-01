@@ -17,6 +17,7 @@ function eventCrtFnt($scope, $log, factory, $window, comm){
 
 		var slide = factory.slidCreation('default slide title', 'description');
 		var attachedContent = factory.contentCreation('default content title', 'image', '../images/chatfou.jpg');
+		//var attachedContent = factory.contentCreation('default content title', 'image', null);
 		slide.content  = attachedContent;
 		$scope.currentPresentation.slidArray[slide.id] = slide;
 

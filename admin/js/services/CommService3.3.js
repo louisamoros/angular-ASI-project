@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('commServices', []).service('comm',commFnc);
+angular.module('commServices', ['btford.socket-io']).service('comm',commFnc);
 
 commFnc.$inject=['factory'];
 
@@ -55,7 +55,8 @@ function commFnc(factory){
 	};
 
 	// Order for watcher clients
-	comm.io={};
+	comm.io = {};
+
 	comm.io.socketConnection=function(scope,uuid){
 		var socket = io.connect();
 		comm.io.uuid=uuid;
