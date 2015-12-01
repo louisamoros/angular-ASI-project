@@ -7,7 +7,17 @@ eventCrtFnt.$inject=['$scope','$log', 'factory', '$window', 'comm'];
 function eventCrtFnt($scope, $log, factory, $window, comm){
 
 	$scope.currentPresentation = factory.presentationCreation();
-	$scope.contentMap = comm.loadImages($scope.currentPresentation.title, $scope.currentPresentation.id);
+
+	var map = comm.loadImages($scope.currentPresentation.title, $scope.currentPresentation.id);
+
+	map.then(
+ 		function(data){
+			$scope.contentMap = data;
+ 		},
+		function(error){
+			$scope.errorLog = 'the server was unable to send imade map';
+ 		}
+	);
 
 	$scope.savePres = function() {
 

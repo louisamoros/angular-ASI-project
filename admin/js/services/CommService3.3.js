@@ -2,57 +2,38 @@
 
 angular.module('commServices', ['btford.socket-io']).service('comm',commFnc);
 
-commFnc.$inject=['factory'];
+commFnc.$inject=['factory', '$q', '$http'];
 
-function commFnc(factory){
+function commFnc(factory, $q, $http){
 
 	var comm = {
 		loadImages: loadImages,
 		loadPres: loadPres,
 	};
 
-//fake image map creation ****************************************
-	var imagzMap={};
-	var loulouImg = {};
-	var chatImg = {};
-	var goImg = {};
-	loulouImg.title = 'loulou';
-	loulouImg.src = '../images/loulou.jpeg';
-	imagzMap[factory.generateUUID()]= loulouImg;
-	chatImg.title = 'gorille';
-	chatImg.src = '../images/gorille.jpg';
-	imagzMap[factory.generateUUID()]= chatImg;
-	goImg.title = 'chat fou';
-	goImg.src = '../images/chatfou.jpg';
-	imagzMap[factory.generateUUID()]= goImg;
-	//***************************************************************
-
-
 	function loadImages(presName,presID){
-			return imagzMap;
-	};
-
-	/*function loadImages(presName,presID){
-		var deferred = $q.defer(); $http.get('/resources_list').
-		success(function(data, status, headers, config) {
-			deferred.resolve(data); }).
-			error(function(data, status, headers, config) { deferred.reject(status);
-				// or server returns response with an error status.
-			});
-			return deferred.promise; };
-			function loadPres(presName,presID){ var deferred = $q.defer(); $http.get('/loadPres').
-			success(function(data, status, headers, config) { deferred.resolve(data);
+		var deferred = $q.defer();
+		$http.get('/resources_list').
+			success(function(data, status, headers, config) {
+				deferred.resolve(data);
 			}).
 			error(function(data, status, headers, config) {
 				deferred.reject(status);
-				// or server returns response with an error status.
 			});
 			return deferred.promise;
-		}*/
+	};
 
 	function loadPres(presName,presID){
-		// TODO
-	};
+		var deferred = $q.defer();
+		$http.get('/loadPres').
+		success(function(data, status, headers, config) { deferred.resolve(data);
+		}).
+		error(function(data, status, headers, config) {
+			deferred.reject(status);
+			// or server returns response with an error status.
+		});
+		return deferred.promise;
+	}
 
 	// Order for watcher clients
 	comm.io = {};
