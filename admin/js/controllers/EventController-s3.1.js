@@ -15,12 +15,19 @@ function eventCrtFnt($scope, $log, factory, $window, comm){
 			$scope.contentMap = data;
  		},
 		function(error){
-			$scope.errorLog = 'the server was unable to send imade map';
+			$scope.errorLogRight = 'the server was unable to send image map';
  		}
 	);
 
 	$scope.savePres = function() {
-
+		comm.savePres($scope.currentPresentation).then(
+			function(resp){
+				$window.alert('presentation saved!');
+ 			},
+			function(error){
+				$window.alert('the server was unable to save your presentation');
+ 			}
+	);
 	};
 
 	$scope.newSlide = function() {

@@ -9,6 +9,7 @@ function commFnc(factory, $q, $http){
 	var comm = {
 		loadImages: loadImages,
 		loadPres: loadPres,
+		savePres: savePres
 	};
 
 	function loadImages(presName,presID){
@@ -34,6 +35,18 @@ function commFnc(factory, $q, $http){
 		});
 		return deferred.promise;
 	}
+
+	function savePres(presentation){
+		var deferred = $q.defer();
+		$http.post('/save-pres', presentation).
+			success(function(data, status, headers, config) {
+				deferred.resolve(data);
+			}).
+			error(function(data, status, headers, config) {
+				deferred.reject(status);
+			});
+			return deferred.promise;
+	};
 
 	// Order for watcher clients
 	comm.io = {};

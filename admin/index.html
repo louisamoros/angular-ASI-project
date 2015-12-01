@@ -83,7 +83,7 @@
 <!-- ************* RIGHT PANEL *************-->
 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 fullScreenHeight">
-    <div ng-show="!contentMap.data">{{errorLog}}</div>
+    <div ng-show="!contentMap.data">{{errorLogRight}}</div>
       ￼￼￼<div ng-repeat="img in contentMap">
         <h4> {{ img.title }}</h4>
         <div ng-drag="true" ng-drag-data="content" ng-drag-success="onDragComplete($data,$event)">
