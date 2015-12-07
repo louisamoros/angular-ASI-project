@@ -6,8 +6,8 @@ eventCrtFnt.$inject=['$scope','$log', 'factory', '$window', 'comm'];
 
 function eventCrtFnt($scope, $log, factory, $window, comm){
 
-	//attempt to load a default presentation, create one if failed
-	//then load image map (for the right panel) from server
+	//attempts to load a default presentation, create one if failed
+	//then loads image map (for the right panel) from server
 	comm.loadPres('le chat', '928ec6ac-5e6b-4414-aa7d-8532321074a8').then(
 		function(data){
 			$scope.currentPresentation = data;
@@ -32,6 +32,7 @@ function eventCrtFnt($scope, $log, factory, $window, comm){
 		);
 	}
 
+	//saves current presentation
 	$scope.savePres = function() {
 		comm.savePres($scope.currentPresentation).then(
 			function(resp){
@@ -41,6 +42,12 @@ function eventCrtFnt($scope, $log, factory, $window, comm){
 				$window.alert('the server was unable to save your presentation');
  			}
 	);
+	};
+
+	//saves current presentation and starts a new one
+	$scope.newPres = function() {
+		$scope.savePres($scope.currentPresentation);
+		$scope.currentPresentation = factory.presentationCreation();
 	};
 
 	$scope.newSlide = function() {
