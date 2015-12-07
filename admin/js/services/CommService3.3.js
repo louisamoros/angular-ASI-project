@@ -25,9 +25,12 @@ function commFnc(factory, $q, $http){
 	};
 
 	function loadPres(presName,presID){
+
 		var deferred = $q.defer();
-		$http.get('/loadPres').
-		success(function(data, status, headers, config) { deferred.resolve(data);
+		$http.get('/load-pres', { params: { pres_id : presID }
+		}).
+		success(function(data, status, headers, config) {
+			deferred.resolve(data);
 		}).
 		error(function(data, status, headers, config) {
 			deferred.reject(status);
