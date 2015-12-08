@@ -46,7 +46,7 @@ function slidCreation(title,txt){
 	slide.id = generateUUID();
 	slide.txt = txt;
 	slide.title = title;
-	slide.content = {};
+	slide.contentMap = {};
 
 	return slide;
 
@@ -58,14 +58,15 @@ function presentationCreation(title,description){
 	presentation.id = generateUUID();
 	presentation.title = title;
 	presentation.description = description;
-	presentation.slidArray = {};
+	presentation.slidArray=[];
 
 	return presentation;
 
 };
 
 function mapToArray(map){
-	contentArray=[];
+	var contentArray=[];
+	var key;
 	for(key in map){
 		contentArray.push(map[key]);
 	}

@@ -1,117 +1,122 @@
-
 <!DOCTYPE html>
-<html lang="en" ng-app="adminApp" ng-controller="eventCtrl"> <head>
-  <title>Bootstrap 101 Template</title>
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
-</head>
-<body>
-  <div class="container-fluid fullScreenHeight zeroRef" >
-    <div class="row container-fluid fullScreenHeight ">
+<html lang="en" ng-app="adminApp" ng-controller="eventCtrl">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
 
-  <!-- ************* LEFT PANEL *************-->
-  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="btn-group" role="group" aria-label="...">
-        <button type="button" class="btn btn-default" ng-click="newPres()">
-          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="btn-group" role="group" aria-label="...">
-        <button type="button" class="btn btn-default" ng-click="savePres()">
-          <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
-        </button>
-        <button type="button" class="btn btn-default" ng-click="newSlide()">
-          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        </button>
-        <button type="button" class="btn btn-default">
-          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="form-group">
-        <label for="currentPresTitle">Title</label>
-        <input type="text" ng-model="currentPresentation.title" class="form-control" id="currentPresTitle">
-      </div>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link href="../css/js.css" rel="stylesheet">
 
-    <div class="slidList" ng-repeat="slide in currentPresentation.slidArray">
-    <h4> {{ slide.title }}</h4>
-    <img ng-src="{{ slide.content.src }}" ng-click="selectCurrentSlid(slide)" alt="" class="img-responsive">
-    </div>
+  </head>
+  <body>
 
-  </div>
-  </div>
+      <div class="container-fluid fullScreenHeight zeroRef" >
+        <div class="row container-fluid fullScreenHeight ">
 
-<!-- ************* CENTER PANEL *************-->
-<div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 zeroReffullScreenHeight" >
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 fullScreenHeight">
-    <div>
-      <!-- ************* control panel *************-->
-      <div class="btn-group" role="group" aria-label="..." ng-controller="playerCtrl">
-        <button type="button" class="btn btn-default" ng-click="begin()">
-          <span class="glyphicon glyphicon-fast-backward" aria-hidden="true"></span>
-        </button>
-        <button type="button" class="btn btn-default" ng-click="backward()">
-          <span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span>
-        </button>
-        <button type="button" class="btn btn-default" ng-click="play()">
-          <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
-        </button>
-        <button type="button" class="btn btn-default" ng-click="pause()">
-          <span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
-        </button>
-        <button type="button" class="btn btn-default" ng-click="forward()">
-          <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span>
-        </button>
-        <button type="button" class="btn btn-default" ng-click="end()">
-          <span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span>
-        </button>
-      </div>
-      <div class="form-group">
-        <label for="currentSlideTitle">Title</label>
-        <input type="text" ng-model="currentSlide.title" class="form-control" id="currentSlideTitle">
-        <label for="currentSlideTxt">Description</label>
-        <input type="text" ng-model="currentSlide.txt" class="form-control" id="currentSlideTxt">
-      </div>
-      <div>
-        <img ng-show="currentSlide.content" ng-src="{{currentSlide.content.src}}" alt="" class="img-responsive">
-        <div ng-show="currentSlide.content && !currentSlide">NO IMAGE SET</div>
-      </div>
-    </div>
-  </div>
-</div>
+<!-- *************   LEFT PANEL  *************-->
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 zeroRef fullScreenHeight divOverflow"  >
+                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                     <div class="btn-group" role="group" aria-label="...">
+                                                 <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="newPres()"></span></button>
+                     </div>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default" ng-click="savePres()"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span></button>
+                        <button type="button" class="btn btn-default" ng-click="newSlide()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
 
-<!-- ************* RIGHT PANEL *************-->
-<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" >
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 fullScreenHeight">
-    <div ng-show="!contentMap.data">{{errorLogRight}}</div>
-      ￼￼￼<div ng-repeat="img in contentMap">
-        <h4> {{ img.title }}</h4>
-        <div ng-drag="true" ng-drag-data="content" ng-drag-success="onDragComplete($data,$event)">
-          <img ng-src="{{img.src}}" alt="{{img.title}}" class="img-responsive">
+                    </div>
+                    <div class="form-group">
+                      <label for="currentPresTitle">Title</label>
+                        <input type="text" ng-model="currentPresentation.title" class="form-control" id="currentPresTitle">
+                    </div>
+
+                </div>
+                <div ng-repeat="slid in currentPresentation.slidArray" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-click="selectCurrentSlid(slid)">
+                    <h3>{{slid.title}}</h3>
+                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 slidZoneEmpty"  ng-class="{'slidZoneSelectedEmpty': slid.id == currentSlide.id, 'hide':slid.contentMap[1]!=undefined}">
+                       Slid Zone
+                   </div>
+                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 slidZone"  ng-class="{'slidZoneSelected': slid.id == currentSlide.id, 'hide':slid.contentMap[1]==undefined}">
+                       <img src="{{contentMap.payload[slid.contentMap[1]].src}}" alt="{{contentMap.payload[slid.contentMap[1]].title}}" class="img-responsive">
+                   </div>
+               </div>
+            </div>
+<!-- *************   CENTER PANEL  *************-->
+            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 zeroRef fullScreenHeight" >
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                   <div class="btn-group" role="group" aria-label="..." >
+                       <button type="button" class="btn btn-default" ><span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span></button>
+                       <button type="button" class="btn btn-default" ><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></button>
+                       <button type="button" class="btn btn-default" ><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
+                       <button type="button" class="btn btn-default" ><span class="glyphicon glyphicon-pause" aria-hidden="true"></span></button>
+                       <button type="button" class="btn btn-default" ><span class="glyphicon glyphicon-forward" aria-hidden="true"></span></button>
+                       <button type="button" class="btn btn-default" ><span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span></button>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 fullScreenHeight">
+                    <div class="form-group" >
+                        <label for="currentSlideTitle">Title</label>
+                        <input type="text" ng-model="currentSlide.title" class="form-control" id="currentSlideTitle">
+                        <label for="currentSlideText">Description</label>
+                        <textarea rows="5" type="text" ng-model="currentSlide.txt"  class="form-control" id="currentSlideText"></textarea>
+                    </div>
+                    <div ng-drop="true" ng-drop-success="onDropComplete($data,$event)"  style="min-height: 100px;min-width: 100px;">
+                        <img src="{{contentMap.payload[currentSlide.contentMap[1]].src}}" alt="{{contentMap.payload[currentSlide.contentMap[1]].title}}" class="img-responsive">
+                    </div>
+                </div>
+
+            </div>
+<!-- *************   RIGHT PANEL  *************-->
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 divOverflow">
+             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for..." ng-model="searchContent.title">
+                <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                </span>
+            </div>
+
+                </div>
+                <div id="dropZone" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div ng-include="'pages/DropZoneArea.html'" </div>
+                </div>
+                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 contentBlock" ng-repeat="content in contentMap.array | filter:searchContent | orderBy: 'title'" >
+                    <input type="text" ng-model="content.title" class="form-control" id="currentContentTitle">
+                    <div ng-drag="true" ng-drag-data="content" ng-drag-success="onDragComplete($data,$event)">
+                        <img ng-src="{{content.src}}" alt="{{content.title}}" class="img-thumbnail">
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-  </div>
-</div>
+    </div>
 
-</div>
-</div>
 
-  <!-- bower_components -->
-  <script src="../bower_components/jquery/dist/jquery.js"></script>
-  <script src="../bower_components/angular/angular.js"></script>
-  <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
-  <script src="../bower_components/angular-route/angular-route.js"></script>
-  <script src="../bower_components/angular-socket-io/socket.js"></script>
+    <!-- bower_components -->
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angular-socket-io/socket.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../bower_components/dropzone/dist/dropzone.js"></script>
+    <script src="../bower_components/ngDraggable/ngDraggable.js"></script>
 
-  <!-- Our javascript -->
-  <script src="js/applications/AdminApp-s3.1.js"></script>
-  <script src="js/controllers/EventController-s3.1.js"></script>
-  <script src="js/controllers/PlayerController.js"></script>
-  <script src="js/services/FactoryService-s3.1.js"></script>
-  <script src="js/services/CommService3.3.js"></script>
+    <!-- Our javascript -->
+    <script src="js/applications/AdminApp-s3.1.js"></script>
+    <script src="js/controllers/EventController-s3.1.js"></script>
+    <script src="js/controllers/PlayerController.js"></script>
+    <script src="js/services/FactoryService-s3.1.js"></script>
+    <script src="js/services/CommService3.3.js"></script>
+    <script src="js/controllers/dropzoneController.js"></script>
 
-  <script src="/socket.io/socket.io.js"></script>
-  <!--<script src="../../node_modules/socket.io/lib/client.js"></script>-->
+    <script src="/socket.io/socket.io.js"></script>
+    <!--<script src="../../node_modules/socket.io/lib/client.js"></script>-->
 
-</body>
+
+<!--  <script type="text/javascript" src="/socket.io/socket.io.js"></script>-->
+  </body>
 </html>

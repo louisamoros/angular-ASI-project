@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('adminApp', ['factoryServices', 'commServices', 'btford.socket-io']);
+angular.module('adminApp', ['ngDraggable','factoryServices','commServices']);
