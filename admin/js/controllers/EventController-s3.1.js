@@ -25,7 +25,7 @@ function eventCrtFnt($scope, $log, factory, $window, comm){
               $log.error('failure loading images', errorPayload);
           });
 
-    var firstPresentation=comm.loadPres('test', '1571504d-7832-4bcf-80c1-b968e40890bf');
+    var firstPresentation=comm.loadPres('test', '90bb7ac7-a68e-4000-bc5f-65e538bdcc27');
        firstPresentation.then(
           function(payload) {
               $scope.currentPresentation = payload;
@@ -103,6 +103,7 @@ function eventCrtFnt($scope, $log, factory, $window, comm){
 		//$scope.currentPresentation.slidArray[slide.id] = slide;
 		console.log($scope.currentPresentation);
 		$scope.currentPresentation.slidArray.push(slide);
+		$scope.currentSlide=slide;
 
 	};
 

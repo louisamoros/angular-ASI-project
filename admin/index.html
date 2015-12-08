@@ -46,9 +46,9 @@
                </div>
             </div>
 <!-- *************   CENTER PANEL  *************-->
-            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 zeroRef fullScreenHeight" >
-                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                   <div class="btn-group" role="group" aria-label="..." >
+            <div class="col-xs-7 col-sm-7 col-md-7 col-lg-7 zeroRef fullScreenHeight">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" align="center">
+                   <div class="btn-group" role="group" aria-label="...">
                        <button type="button" class="btn btn-default" ><span class="glyphicon glyphicon-step-backward" aria-hidden="true"></span></button>
                        <button type="button" class="btn btn-default" ><span class="glyphicon glyphicon-backward" aria-hidden="true"></span></button>
                        <button type="button" class="btn btn-default" ><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
@@ -67,6 +67,7 @@
                     </div>
                     <div ng-drop="true" ng-drop-success="onDropComplete($data,$event)"  style="min-height: 100px;min-width: 100px;">
                         <img src="{{contentMap.payload[currentSlide.contentMap[1]].src}}" alt="{{contentMap.payload[currentSlide.contentMap[1]].title}}" class="img-responsive">
+                        <div ng-show="!contentMap.payload[currentSlide.contentMap[1]].src && currentSlide"> NO IMAGE SET</div>
                     </div>
                 </div>
 
