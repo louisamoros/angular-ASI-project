@@ -13,42 +13,34 @@ function eventCrtFnt($scope, $log, factory, $window, comm){
   $scope.presentationMap.payload="";
 
   //get images from server
-  // var available_content=comm.loadImages('','');
-  // available_content.then(
-  //   function(payload) {
-  //     $scope.contentMap.payload = payload;
-  //     $scope.contentMap.array=factory.mapToArray(payload);
-  //   },
-  //   function(errorPayload) {
-  //     $log.error('failure loading images', errorPayload);
-  //   });
+  var available_content=comm.loadImages('','');
+  available_content.then(
+    function(payload) {
+      $scope.contentMap.payload = payload;
+      $scope.contentMap.array=factory.mapToArray(payload);
+    },
+    function(errorPayload) {
+      $log.error('failure loading images', errorPayload);
+    });
 
+    //get presentation from server
+    var firstPresentation=comm.loadPres('test', '90bb7ac7-a68e-4000-bc5f-65e538bdcc27');
+    firstPresentation.then(
+      function(payload) {
+        $scope.currentPresentation = payload;
 
-
-
-
-    // //get presentation from server
-    // var firstPresentation=comm.loadPres('test', '90bb7ac7-a68e-4000-bc5f-65e538bdcc27');
-    // firstPresentation.then(
-    //   function(payload) {
-    //     $scope.currentPresentation = payload;
-    //
-    //     // console.log($scope.currentPresentation);
-    //     // console.log($scope.currentPresentation.slidArray);
-    //     // if($scope.currentPresentation.slidArray == undefined){
-    //     // 	console.log('creating new pres because there is still a problem loading the existing one');
-    //     // 	$scope.currentPresentation = factory.presentationCreation();
-    //     // }
-    //     //var pres = JSON.parse($scope.currentPresentation);
-    //   },
-    //   function(errorPayload) {
-    //     $log.error('failure loading presentation', errorPayload);
-    //     $scope.currentPresentation = factory.presentationCreation();
-    //   });
-
-
-      $scope.currentPresentation = factory.presentationCreation();
-
+        // console.log($scope.currentPresentation);
+        // console.log($scope.currentPresentation.slidArray);
+        // if($scope.currentPresentation.slidArray == undefined){
+        // 	console.log('creating new pres because there is still a problem loading the existing one');
+        // 	$scope.currentPresentation = factory.presentationCreation();
+        // }
+        //var pres = JSON.parse($scope.currentPresentation);
+      },
+      function(errorPayload) {
+        $log.error('failure loading presentation', errorPayload);
+        $scope.currentPresentation = factory.presentationCreation();
+      });
 
       //saves current presentation
       $scope.savePres = function() {
@@ -119,7 +111,7 @@ function eventCrtFnt($scope, $log, factory, $window, comm){
 
       $scope.isSlidContentEmpty=function(slid){
         if(slid.contentMap[1]== undefined){
-          return true;
+          return true; 
         }
         return false
       };
