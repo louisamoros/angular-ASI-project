@@ -27,9 +27,8 @@ function commFnc(factory, $q, $http){
 	function loadPres(presName,presID){
 
 		var deferred = $q.defer();
-		$http.get('/load-pres', { params: { pres_id : presID }
-		}).
-		success(function(data, status, headers, config) {
+		$http.get('/api/presId/' + presID)
+		.success(function(data, status, headers, config) {
 			deferred.resolve(data);
 		}).
 		error(function(data, status, headers, config) {
@@ -41,7 +40,7 @@ function commFnc(factory, $q, $http){
 
 	function savePres(presentation){
 		var deferred = $q.defer();
-		$http.post('/save-pres', presentation).
+		$http.post('/api/save-pres', presentation).
 			success(function(data, status, headers, config) {
 				deferred.resolve(data);
 			}).
