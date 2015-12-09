@@ -8,7 +8,7 @@
       previewNode.parentNode.removeChild(previewNode);
 
       var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
-        url: "/file-upload", // Set the url
+        url: "/api/slides", // Set the url
         thumbnailWidth: 80,
         thumbnailHeight: 80,
         parallelUploads: 20,

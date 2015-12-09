@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('commServices', ['btford.socket-io']).service('comm',commFnc);
+angular.module('commServices', []).service('comm',commFnc);
 
 commFnc.$inject=['factory', '$q', '$http'];
 
