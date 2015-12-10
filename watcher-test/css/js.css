@@ -1,0 +1,104 @@
+html,body {height: 100%; padding-top: 0px; overflow-x:hidden; overflow-y:hidden}
+.zeroRef{padding: 0px;margin:0px}
+.fullScreenHeight{height: 100%;}
+
+
+#dropZone{
+    height: 100%;
+    border-bottom-color: cornflowerblue;   
+    border-radius:1em;
+    text-align: left;
+    background-color:aliceblue;
+    margin-top: 0.5em;
+}
+
+.slidZoneEmpty{
+    height: 150px;
+    width: 100%;
+    border-color:rgba(169, 169, 169, 0.71);   
+    border-style: dashed;
+    border-width: medium;
+    border-radius:1em;
+    text-align: center;
+    background-color:rgba(169, 169, 169, 0.12);
+}
+
+
+.slidZoneSelectedEmpty{
+    height: 150px;
+    width: 100%;
+    border-color:rgba(0, 100, 0, 0.78);   
+    border-style: dashed;
+    border-width: medium;
+    border-radius:1em;
+    text-align: center;
+    background-color:rgba(183, 255, 183, 0.62);
+}
+
+.slidZoneSelected{
+    border-color:rgba(0, 100, 0, 0.78);   
+    border-style: dashed;
+    border-width: medium;
+    border-radius:1em;
+    text-align: center;
+/*    background-color:rgba(183, 255, 183, 0.62);*/
+}
+.hide{
+    visibility: hidden;
+}
+
+.divOverflow{
+    height:100%;
+    overflow-y:auto;;
+}
+
+.contentBlock{
+    margin: 1em;
+}
+
+/* DROPZONE CSS */
+ /*Mimic table appearance */
+    div.table {
+      display: table;
+    }
+    div.table .file-row {
+      display: table-row;
+    }
+    div.table .file-row > div {
+      display: table-cell;
+      vertical-align: top;
+      border-top: 1px solid #ddd;
+      padding: 8px;
+    }
+    div.table .file-row:nth-child(odd) {
+      background: #f9f9f9;
+    }
+
+
+
+    /* The total progress gets shown by event listeners */
+    #total-progress {
+      opacity: 0;
+      transition: opacity 0.3s linear;
+    }
+
+    /* Hide the progress bar when finished */
+    #previews .file-row.dz-success .progress {
+      opacity: 0;
+      transition: opacity 0.3s linear;
+    }
+
+    /* Hide the delete button initially */
+    #previews .file-row .delete {
+      display: none;
+    }
+
+    /* Hide the start and cancel buttons and show the delete button */
+
+    #previews .file-row.dz-success .start,
+    #previews .file-row.dz-success .cancel {
+      display: none;
+    }
+    #previews .file-row.dz-success .delete {
+      display: block;
+    }

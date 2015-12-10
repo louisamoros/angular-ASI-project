@@ -56,17 +56,21 @@ function commFnc(factory, $q, $http){
 	comm.io.socketConnection=function(scope,uuid){
 		var socket = io.connect();
 		comm.io.uuid=uuid;
-		socket.on('connection', function () {
+		socket.on('connection', function (data) {
 			socket.emit('data_comm',{'id':comm.io.uuid});
+			console.log('socket connection established, server said : ' + data.connection);
 		});
 		socket.on('newPres', function (socket) {
 		});
-		socket.on('slidEvent', function (socket) {
+		socket.on('slidEvent', function (data) {
 		});
 
 		return socket;
 	}
 
+	comm.io.emitNext=function(socket){
+		socket.emit('slidEvent', {'CMD':"NEXT"});
+	}
 	comm.io.emitPrev=function(socket){
 		socket.emit('slidEvent', {'CMD':"PREV"});
 	}
@@ -77,9 +81,6 @@ function commFnc(factory, $q, $http){
 		socket.emit('slidEvent', {'CMD':"PAUSE"});
 	}
 	comm.io.emitBegin=function(socket){
-		socket.emit('slidEvent', {'CMD':"NEXT"});
-	}
-	comm.io.emitNext=function(socket){
 		socket.emit('slidEvent', {'CMD':"BEGIN"});
 	}
 	comm.io.emitEnd=function(socket){
