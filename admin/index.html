@@ -96,9 +96,9 @@
             <div ng-include="'pages/DropZoneArea.html'"></div>
           </div>
           <div ng-repeat="content in contentMap.array | filter:searchContent | orderBy: 'title'" >
-            <div><span>{{content.title}}</span></div>
+            <div><span>{{content.fileName}}</span></div>
             <div ng-drag="true" ng-drag-data="content" ng-drag-success="onDragComplete($data,$event)">
-              <img ng-src="{{content.src}}" alt="{{content.title}}" class="img-thumbnail">
+              <img ng-src="{{uploadsDirectory + content.fileName}}" alt="{{content.title}}" class="img-thumbnail">
             </div>
           </div>
         </div>

@@ -11,6 +11,7 @@ function eventCrtFnt($scope, $log, factory, $window, comm){
   $scope.contentMap.payload='';
   $scope.presentationMap={};
   $scope.presentationMap.payload="";
+  $scope.uploadsDirectory = "../uploads/";
 
   //get images from server
   var available_content=comm.loadImages('','');
@@ -25,26 +26,26 @@ function eventCrtFnt($scope, $log, factory, $window, comm){
 
 
     //get presentation from server
-    var firstPresentation=comm.loadPres('test', 'b45f6143-d5ba-4db3-86a3-eb6cfe9b2a2e');
-    firstPresentation.then(
-      function(payload) {
-        $scope.currentPresentation = payload;
+    // var firstPresentation=comm.loadPres('test', 'b45f6143-d5ba-4db3-86a3-eb6cfe9b2a2e');
+    // firstPresentation.then(
+    //   function(payload) {
+    //     $scope.currentPresentation = payload;
+    //
+    //     // console.log($scope.currentPresentation);
+    //     // console.log($scope.currentPresentation.slidArray);
+    //     // if($scope.currentPresentation.slidArray == undefined){
+    //     // 	console.log('creating new pres because there is still a problem loading the existing one');
+    //     // 	$scope.currentPresentation = factory.presentationCreation();
+    //     // }
+    //     //var pres = JSON.parse($scope.currentPresentation);
+    //   },
+    //   function(errorPayload) {
+    //     $log.error('failure loading presentation', errorPayload);
+    //     $scope.currentPresentation = factory.presentationCreation();
+    //   });
 
-        // console.log($scope.currentPresentation);
-        // console.log($scope.currentPresentation.slidArray);
-        // if($scope.currentPresentation.slidArray == undefined){
-        // 	console.log('creating new pres because there is still a problem loading the existing one');
-        // 	$scope.currentPresentation = factory.presentationCreation();
-        // }
-        //var pres = JSON.parse($scope.currentPresentation);
-      },
-      function(errorPayload) {
-        $log.error('failure loading presentation', errorPayload);
-        $scope.currentPresentation = factory.presentationCreation();
-      });
 
-
-      //$scope.currentPresentation = factory.presentationCreation();
+      $scope.currentPresentation = factory.presentationCreation();
 
 
       //saves current presentation
@@ -123,7 +124,7 @@ function eventCrtFnt($scope, $log, factory, $window, comm){
         return false
       };
 
-      // 
+      //
       //
       // var socket = comm.io.socketConnection($scope, factory.generateUUID());
       //
