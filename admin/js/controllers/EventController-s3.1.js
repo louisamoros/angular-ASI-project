@@ -128,30 +128,33 @@ function eventCrtFnt($scope, $log, factory, $window, comm){
       var socket = comm.io.socketConnection($scope, factory.generateUUID());
 
       //handle button behaviors
+      $scope.emitBegin=function(){
+        console.log('command sent : BEGIN');
+        var index = getCurrentSlideIndex();
+        var newIndex = index <= 0 ? 0 : (index - 1);
+        setCurrentSlide(0);
+        comm.io.emitBegin(socket);
+      };
       $scope.emitPrev=function(){
-        console.log('prev');
+        console.log('command sent : PREV');
         var index = getCurrentSlideIndex();
         var newIndex = index <= 0 ? 0 : (index - 1);
         setCurrentSlide(newIndex);
         comm.io.emitPrev(socket);
       };
       $scope.emitStart=function(){
-        //todo
-        comm.io.emitStart(socket);
+        //select first slide by default
+        console.log('command sent : START');
+        setCurrentSlide(0);
+        comm.io.emitStart(socket, $scope.currentPresentation.id);
       };
       $scope.emitPause=function(){
         //todo
+        console.log('command sent : PAUSE');
         comm.io.emitPause(socket);
       };
-      $scope.emitBegin=function(){
-        console.log('begin');
-        var index = getCurrentSlideIndex();
-        var newIndex = index <= 0 ? 0 : (index - 1);
-        setCurrentSlide(0);
-        comm.io.emitBegin(socket);
-      };
       $scope.emitNext=function(){
-        console.log('next');
+        console.log('command sent : NEXT');
         var index = getCurrentSlideIndex();
         var endIdx = $scope.currentPresentation.slidArray.length - 1;
         var newIndex = index >= endIdx ? endIdx : (index + 1);
@@ -159,7 +162,7 @@ function eventCrtFnt($scope, $log, factory, $window, comm){
         comm.io.emitNext(socket);
       };
       $scope.emitEnd=function(){
-        console.log('end');
+        console.log('command sent : END');
         setCurrentSlide($scope.currentPresentation.slidArray.length - 1);
         comm.io.emitEnd(socket);
       };
