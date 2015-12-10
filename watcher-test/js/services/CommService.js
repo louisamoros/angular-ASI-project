@@ -13,7 +13,7 @@ function commFnc($q, $http){
 
 	function loadImages(presName,presID){
 		var deferred = $q.defer();
-		$http.get('/resources_list').
+		$http.get('/api/slides').
 		success(function(data, status, headers, config) {
 			deferred.resolve(data);
 		}).

@@ -19,6 +19,7 @@ function eventCrtFnt($scope, $log, factory, $window, comm){
     function(payload) {
       $scope.contentMap.payload = payload;
       $scope.contentMap.array=factory.mapToArray(payload);
+      console.log($scope.contentMap.payload);
     },
     function(errorPayload) {
       $log.error('failure loading images', errorPayload);
@@ -26,27 +27,23 @@ function eventCrtFnt($scope, $log, factory, $window, comm){
 
 
     //get presentation from server
-    // var firstPresentation=comm.loadPres('test', 'b45f6143-d5ba-4db3-86a3-eb6cfe9b2a2e');
-    // firstPresentation.then(
-    //   function(payload) {
-    //     $scope.currentPresentation = payload;
-    //
-    //     // console.log($scope.currentPresentation);
-    //     // console.log($scope.currentPresentation.slidArray);
-    //     // if($scope.currentPresentation.slidArray == undefined){
-    //     // 	console.log('creating new pres because there is still a problem loading the existing one');
-    //     // 	$scope.currentPresentation = factory.presentationCreation();
-    //     // }
-    //     //var pres = JSON.parse($scope.currentPresentation);
-    //   },
-    //   function(errorPayload) {
-    //     $log.error('failure loading presentation', errorPayload);
-    //     $scope.currentPresentation = factory.presentationCreation();
-    //   });
+    var firstPresentation=comm.loadPres('test', 'b45f6143-d5ba-4db3-86a3-eb6cfe9b2a2e');
+    firstPresentation.then(
+      function(payload) {
+        $scope.currentPresentation = payload;
 
-
-      $scope.currentPresentation = factory.presentationCreation();
-
+        // console.log($scope.currentPresentation);
+        // console.log($scope.currentPresentation.slidArray);
+        // if($scope.currentPresentation.slidArray == undefined){
+        // 	console.log('creating new pres because there is still a problem loading the existing one');
+        // 	$scope.currentPresentation = factory.presentationCreation();
+        // }
+        //var pres = JSON.parse($scope.currentPresentation);
+      },
+      function(errorPayload) {
+        $log.error('failure loading presentation', errorPayload);
+        $scope.currentPresentation = factory.presentationCreation();
+      });
 
       //saves current presentation
       $scope.savePres = function() {
@@ -103,7 +100,7 @@ function eventCrtFnt($scope, $log, factory, $window, comm){
 
         if($scope.currentSlide != undefined){
           console.log(data.id);
-          $scope.currentSlide.contentMap[1]=data.id;
+          $scope.currentSlide.contentMap[1]=data.id + '_slide';
 
           //needed to inform angular that a change occurred on the current variable, this fire an event change
           $scope.$apply()

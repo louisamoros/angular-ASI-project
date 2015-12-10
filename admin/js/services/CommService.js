@@ -15,6 +15,7 @@ function commFnc(factory, $q, $http){
 	function loadImages(presName, presID){
 		var deferred = $q.defer();
 		$http.get('/api/slides').
+		//$http.get('/resources_list').
 			success(function(data, status, headers, config) {
 				deferred.resolve(data);
 			}).

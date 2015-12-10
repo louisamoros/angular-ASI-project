@@ -9,6 +9,7 @@ function eventCrtFnt($scope, $log, $window, comm, factory){
   //CREATE an object for interactions with ng-include controller
   $scope.contentMap={};
   $scope.contentMap.payload='';
+  $scope.uploadsDirectory = "../uploads/";
 
   //get images from server
   var available_content=comm.loadImages('','');
