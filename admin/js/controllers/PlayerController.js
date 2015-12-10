@@ -51,6 +51,7 @@ function playerCrtFnt($scope, $log, comm, factory, $window){
 	//function sets the current slide depending on the given index
 	function setCurrentSlide(index){
 		$scope.currentSlide = $scope.currentPresentation.slidArray[index];
+		$scope.selectCurrentSlid($scope.currentPresentation.slidArray[index]);
 	}
 
 	//function return the current slide index

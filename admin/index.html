@@ -77,7 +77,7 @@
              <textarea type="text" ng-model="currentSlide.txt" class="form-control"></textarea>
            </div>
            <div ng-drop="true" ng-drop-success="onDropComplete($data,$event)"  style="min-height: 100px; min-width: 100px; border: 2px solid gray;">
-             <div ng-show="!contentMap.payload[currentSlide.contentMap[1]].src && currentSlide">NO IMAGE SET</div>
+             <div ng-show="currentSlide && isSlidContentEmpty(currentSlide)">NO IMAGE SET</div>
              <img src="{{contentMap.payload[currentSlide.contentMap[1]].src}}" alt="{{contentMap.payload[currentSlide.contentMap[1]].title}}" class="img-responsive">
            </div>
          </div>
