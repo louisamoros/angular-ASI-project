@@ -12,7 +12,7 @@ function commFnc(factory, $q, $http){
 		savePres: savePres
 	};
 
-	function loadImages(presName,presID){
+	function loadImages(presName, presID){
 		var deferred = $q.defer();
 		$http.get('/resources_list').
 			success(function(data, status, headers, config) {
@@ -24,10 +24,10 @@ function commFnc(factory, $q, $http){
 			return deferred.promise;
 	};
 
-	function loadPres(presName,presID){
+	function loadPres(presName, presId){
 
 		var deferred = $q.defer();
-		$http.get('/api/presId/' + presID)
+		$http.get('/api/pres/' + presId)
 		.success(function(data, status, headers, config) {
 			deferred.resolve(data);
 		}).
@@ -40,7 +40,7 @@ function commFnc(factory, $q, $http){
 
 	function savePres(presentation){
 		var deferred = $q.defer();
-		$http.post('/api/save-pres', presentation).
+		$http.post('/api/pres', presentation).
 			success(function(data, status, headers, config) {
 				deferred.resolve(data);
 			}).

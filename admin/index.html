@@ -36,15 +36,15 @@
               <label>Title</label>
               <input type="text" ng-model="currentPresentation.title" class="form-control">
             </div>
-            <div ng-repeat="slide in currentPresentation.slidArray" ng-click="selectCurrentSlid(slide)">
-              <h3>{{slide.title}}</h3>
-              <div class="slidZoneEmpty" ng-class="{'slidZoneSelectedEmpty': slid.id == currentSlide.id, 'hide':slid.contentMap[1]!=undefined}">
+            <div ng-repeat="slid in currentPresentation.slidArray" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-click="selectCurrentSlid(slid)">
+              <h3>{{slid.title}}</h3>
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 slidZoneEmpty"  ng-class="{'slidZoneSelectedEmpty': slid.id == currentSlide.id, 'hide':slid.contentMap[1]!=undefined}">
                 Slid Zone
               </div>
-              <div class="slidZone" ng-class="{'slidZoneSelected': slid.id == currentSlide.id, 'hide':slid.contentMap[1]==undefined}">
-                 <img src="{{contentMap.payload[slid.contentMap[1]].src}}" alt="{{contentMap.payload[slid.contentMap[1]].title}}" class="img-responsive">
-               </div>
-           </div>
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 slidZone"  ng-class="{'slidZoneSelected': slid.id == currentSlide.id, 'hide':slid.contentMap[1]==undefined}">
+                <img src="{{contentMap.payload[slid.contentMap[1]].src}}" alt="{{contentMap.payload[slid.contentMap[1]].title}}" class="img-responsive">
+              </div>
+            </div>
         </div>
 
         <!-- *************   CENTER PANEL  *************-->
@@ -76,11 +76,11 @@
              <label>Description</label>
              <textarea type="text" ng-model="currentSlide.txt" class="form-control"></textarea>
            </div>
-           <div ng-drop="true" ng-drop-success="onDropComplete($data,$event)">
-             <img src="{{contentMap.payload[currentSlide.contentMap[1]].src}}" alt="{{contentMap.payload[currentSlide.contentMap[1]].title}}" class="img-responsive">
+           <div ng-drop="true" ng-drop-success="onDropComplete($data,$event)"  style="min-height: 100px; min-width: 100px; border: 2px solid gray;">
              <div ng-show="!contentMap.payload[currentSlide.contentMap[1]].src && currentSlide">NO IMAGE SET</div>
+             <img src="{{contentMap.payload[currentSlide.contentMap[1]].src}}" alt="{{contentMap.payload[currentSlide.contentMap[1]].title}}" class="img-responsive">
            </div>
-        </div>
+         </div>
 
         <!-- *************   RIGHT PANEL  *************-->
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
