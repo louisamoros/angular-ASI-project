@@ -50,7 +50,7 @@ function eventCrtFnt($scope, $log, $window, comm, factory){
                 $scope.currentPresentation = payload;
                 //set currentSlid to the first one by default
                 setCurrentSlide(0);
-                console.log('presentation \'$scope.currentPresentation.title\' has began');
+                console.log('presentation \'' + $scope.currentPresentation.title + '\' has began');
               },
               function(errorPayload) {
                 $log.error('failure loading presentation', errorPayload);

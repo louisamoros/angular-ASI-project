@@ -19,7 +19,8 @@
 <!-- *************   LEFT PANEL  *************-->
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 zeroRef fullScreenHeight divOverflow"  >
                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                    <div> pres title </div>
+                    <div ng-show="currentPresentation"> {{currentPresentation.title}} </div>
+                    <div ng-show="!currentPresentation"> Presentation has not started yet</div>
                 </div>
                 <div ng-repeat="slid in currentPresentation.slidArray" class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-click="selectCurrentSlid(slid)">
                     <h3>{{slid.title}}</h3>
@@ -36,8 +37,8 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 fullScreenHeight">
 
-                        <div>slide Title</div>
-                        <div>slide description</div>
+                        <div>{{currentSlide.title}}</div>
+                        <div>{{currentSlide.txt}}</div>
 
                     <div style="min-height: 100px;min-width: 100px;">
                         <img src="{{contentMap.payload[currentSlide.contentMap[1]].src}}" alt="{{contentMap.payload[currentSlide.contentMap[1]].title}}" class="img-responsive">

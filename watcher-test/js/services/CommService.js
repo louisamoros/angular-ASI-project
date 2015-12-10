@@ -26,7 +26,7 @@ function commFnc($q, $http){
 	function loadPres(presName,presID){
 
 		var deferred = $q.defer();
-		$http.get('/api/presId/' + presID)
+		$http.get('/api/pres/' + presID)
 		.success(function(data, status, headers, config) {
 			deferred.resolve(data);
 		}).
