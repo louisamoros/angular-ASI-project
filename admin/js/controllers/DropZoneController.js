@@ -1,5 +1,5 @@
 
-angular.module('adminApp').controller('dropzoneController', ['$scope', 'factory','comm', function($scope, factory,comm) {
+angular.module('adminApp').controller('dropzoneController', ['$log', '$scope', 'factory','comm', function($scope, factory,comm) {
 
   // Get the template HTML and remove it from the doument
   var previewNode = document.querySelector("#template");
