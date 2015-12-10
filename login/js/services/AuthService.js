@@ -17,29 +17,21 @@ function authFnc($http, $q) {
 	};
 
 
-	function authAsk(login,pwd){
-
+	function authAsk(login,pwd) {
 		var deferred = $q.defer();
 
 		$http.post('//localhost:5000/connect',{'login':login,'pwd':pwd}).
 			success(function(data, status, headers, config) {
-				//user successfully logged
-				console.log('good jooooooooooooooooob');
+				console.log('LOGIN SUCCESS');
 				console.log(data);
-
 				deferred.resolve(data);
-
 			}).
 			error(function(data, status, headers, config) {
-				//unknown user ...
-				console.log('bad joooooooooooooooob');
+				console.log('LOGIN FAILED');
 				console.log(data);
-
 				deferred.reject(data);
 			});
-
-        return deferred.promise;
+			return deferred.promise;
     }
-
-	return fncContainer;
+		return fncContainer;
 }
