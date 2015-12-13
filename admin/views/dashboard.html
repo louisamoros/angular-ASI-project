@@ -1,0 +1,11 @@
+<div class="well well-lg">
+  <p class="text-muted">Please select a presentation:</p>
+  <!-- <pre>{{presentations | json}}</pre> -->
+  <div ng-repeat="pres in presentations">
+    <a href="" ng-click="loadPres(pres.id)">
+      <span ng-show="pres.title">{{pres.title}}</span>
+      <em ng-show="!pres.title" class="text-muted">No title</em>
+    </a>
+    <p class="text-muted">{{pres.slidArray.length}} slide(s)</p>
+  </div>
+</div>

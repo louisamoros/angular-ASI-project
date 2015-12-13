@@ -12,10 +12,9 @@ function commFnc(factory, $q, $http){
 		savePres: savePres
 	};
 
-	function loadImages(presName, presID){
+	function loadImages() {
 		var deferred = $q.defer();
 		$http.get('/api/slides').
-		//$http.get('/resources_list').
 			success(function(data, status, headers, config) {
 				deferred.resolve(data);
 			}).
@@ -25,18 +24,29 @@ function commFnc(factory, $q, $http){
 			return deferred.promise;
 	};
 
-	function loadPres(presName, presId){
-
-		var deferred = $q.defer();
-		$http.get('/api/pres/' + presId)
-		.success(function(data, status, headers, config) {
-			deferred.resolve(data);
-		}).
-		error(function(data, status, headers, config) {
-			deferred.reject(status);
-			// or server returns response with an error status.
-		});
-		return deferred.promise;
+	function loadPres(presId){
+		if(presId) {
+			var deferred = $q.defer();
+			$http.get('/api/pres/' + presId)
+			.success(function(data, status, headers, config) {
+				deferred.resolve(data);
+			}).
+			error(function(data, status, headers, config) {
+				deferred.reject(status);
+				// or server returns response with an error status.
+			});
+			return deferred.promise;
+		} else {
+			var deferred = $q.defer();
+			$http.get('/api/pres')
+			.success(function(data, status, headers, config) {
+				deferred.resolve(data);
+			}).
+			error(function(data, status, headers, config) {
+				deferred.reject(status);
+			});
+			return deferred.promise;
+		}
 	}
 
 	function savePres(presentation){

@@ -1,0 +1,140 @@
+<div class="row">
+  <!-- *************   LEFT PANEL  *************-->
+  <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2">
+    <div class="panel panel-default">
+      <div class="panel-heading has-pointer" ng-click="showDetails = !showDetails" ng-init="showDetails = true">
+        <h4 class="panel-title">
+          Details
+          <span ng-show="showDetails" class="glyphicon glyphicon-chevron-down"></span>
+          <span ng-hide="showDetails" class="glyphicon glyphicon-chevron-right"></span>
+        </h4>
+      </div>
+      <div class="panel-body" ng-show="showDetails">
+        <div class="btn-group">
+          <button type="button"
+                  ng-click="newPres()"
+                  class="btn btn-sm btn-default"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  title="New presention">
+            <span class="glyphicon glyphicon-edit"></span>
+          </button>
+        </div>
+        <div class="btn-group">
+            <button type="button"
+                    ng-click="savePres()"
+                    class="btn btn-sm btn-default"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    title="Save presention">
+              <span class="glyphicon glyphicon-floppy-disk"></span>
+            </button>
+            <button type="button"
+                    ng-click="newSlide()"
+                    class="btn btn-sm btn-default"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    title="New slide">
+              <span class="glyphicon glyphicon-plus"></span>
+            </button>
+            <button type="button"
+                    ng-click="deleteSlide()"
+                    class="btn btn-sm btn-default"
+                    data-toggle="tooltip"
+                    data-placement="bottom"
+                    title="Delete slide">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </div>
+        <div class="form-group">
+          <label>Title</label>
+          <input type="text" ng-model="currentPresentation.title" class="form-control">
+        </div>
+        <div ng-repeat="slid in currentPresentation.slidArray" ng-click="selectCurrentSlid(slid)">
+          <h3>{{slid.title}}</h3>
+          <div class="slidZoneEmpty"  ng-class="{'slidZoneSelectedEmpty': slid.id == currentSlide.id, 'hide':slid.contentMap[1]!=undefined}">
+            Slid Zone
+          </div>
+          <div class="slidZone"  ng-class="{'slidZoneSelected': slid.id == currentSlide.id, 'hide':slid.contentMap[1]==undefined}">
+            <img src="{{uploadsDirectory + contentMap.payload[slid.contentMap[1]].fileName}}" alt="{{uploadsDirectory + contentMap.payload[currentSlide.contentMap[1]].title}}" class="img-responsive">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+
+    <!-- *************   CENTER PANEL  *************-->
+    <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7" ng-controller="playerCtrl">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">View</h4>
+        </div>
+        <div class="panel-body">
+          <div class="btn-group">
+            <button type="button" class="btn btn-default" ng-click="begin()">
+              <span class="glyphicon glyphicon-backward"></span>
+            </button>
+            <button type="button" class="btn btn-default" ng-click="backward()">
+              <span class="glyphicon glyphicon-step-backward"></span>
+            </button>
+            <button type="button" class="btn btn-default" ng-click="play()">
+              <span class="glyphicon glyphicon-play"></span>
+            </button>
+            <button type="button" class="btn btn-default" ng-click="pause()">
+              <span class="glyphicon glyphicon-pause"></span>
+            </button>
+            <button type="button" class="btn btn-default" ng-click="forward()">
+              <span class="glyphicon glyphicon-step-forward"></span>
+            </button>
+            <button type="button" class="btn btn-default" ng-click="end()">
+              <span class="glyphicon glyphicon-forward"></span>
+            </button>
+          </div>
+          <div class="form-group">
+            <label>Title</label>
+            <input type="text" ng-model="currentSlide.title" class="form-control">
+            <label>Description</label>
+            <textarea type="text" ng-model="currentSlide.txt" class="form-control"></textarea>
+          </div>
+          <div ng-drop="true" ng-drop-success="onDropComplete($data,$event)"  style="min-height: 100px; min-width: 100px; border: 2px solid gray;">
+            <div ng-show="currentSlide && isSlidContentEmpty(currentSlide)">NO IMAGE SET</div>
+            <img src="{{uploadsDirectory + contentMap.payload[currentSlide.contentMap[1]].fileName}}" alt="" class="img-responsive">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- *************   RIGHT PANEL  *************-->
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+      <div class="panel panel-default">
+        <div class="panel-heading has-pointer" ng-click="showImages = !showImages" ng-init="showImages = true">
+          <h4 class="panel-title">
+            Images
+            <span ng-show="showImages" class="glyphicon glyphicon-chevron-down"></span>
+            <span ng-hide="showImages" class="glyphicon glyphicon-chevron-right"></span>
+          </h4>
+        </div>
+        <div ng-show="showImages" class="panel-body">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for..." ng-model="searchContent.title">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+            </span>
+          </div>
+          <div id="dropZone">
+            <div ng-include="'views/DropZoneArea.html'"></div>
+          </div>
+          <div ng-repeat="content in contentMap.array | filter:searchContent | orderBy: 'title'" >
+            <div><span>{{content.title}}</span></div>
+            <div ng-drag="true" ng-drag-data="content" ng-drag-success="onDragComplete($data,$event)">
+              <img ng-src="{{uploadsDirectory + content.fileName}}" alt="{{content.title}}" class="img-thumbnail">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

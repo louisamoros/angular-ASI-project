@@ -5,13 +5,12 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/dashboard', {
-        templateUrl: 'index.html',
-        controller: 'AdminCtrl'
+        templateUrl: 'views/dashboard.html',
+        controller: 'dashboardCtrl'
       })
-      .when('/presentation', {
+      .when('/presentation/:presId', {
         templateUrl: 'views/presentation.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+        controller: 'presentationCtrl'
       })
       .otherwise({
         redirectTo: '/dashboard'

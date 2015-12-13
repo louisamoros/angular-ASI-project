@@ -8,6 +8,9 @@
   height: 100%;
 }
 
+.has-pointer {
+  cursor: pointer;
+}
 
 #dropZone{
   height: 100%;
