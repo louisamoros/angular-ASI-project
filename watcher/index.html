@@ -1,22 +1,69 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="adminApp" ng-controller="eventCtrl">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SlideMe Watcher</title>
+<html lang="en" ng-app="watcherApp" ng-controller="eventCtrl">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SlideMe Watcher</title>
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+  </head>
+  <body>
 
-  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+    <div class="container">
 
-</head>
-<body>
+      <div class="panel panel-primary" ng-show="!currentPresentation">
+        <div class="panel-heading">
+          <h3 align="center">Presentation has not started yet.</h3>
+        </div>
+        <div class="panel-body">
+          <h4 align="center" class="text-muted">Please wait...</h4>
+        </div>
+      </div>
 
-  <h1>WATCHER VIEW : TODO</h1>
+      <div class="panel panel-primary" ng-show="currentPresentation">
+        <div class="panel-heading">
+          <h3 align="center">{{currentPresentation.title}}</h3>
+        </div>
 
-  <script src="../bower_components/angular/angular.js"></script>
-  <script src="../bower_components/jquery/dist/jquery.js"></script>
-  <script src="../bower_components/angular-socket-io/socket.js"></script>
-  <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <div class="panel-body">
+          <!-- *************   LEFT PANEL  *************-->
+          <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="height:500px; overflow-y:auto">
+            <div ng-repeat="slid in currentPresentation.slidArray">
+              <h3>{{slid.title}}</h3>
+              <div ng-class="{'slidZoneSelected': slid.id == currentSlide.id}">
+                <img src="{{uploadsDirectory + contentMap.payload[slid.contentMap[1]].fileName}}" alt="{{uploadsDirectory + contentMap.payload[slid.contentMap[1]].title}}" class="img-responsive">
+              </div>
+            </div>
+          </div>
 
-</body>
+          <!-- *************   CENTER PANEL  *************-->
+          <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+              <div>{{currentSlide.title}}</div>
+              <div>{{currentSlide.txt}}</div>
+              <div>
+                <img src="{{uploadsDirectory + contentMap.payload[currentSlide.contentMap[1]].fileName}}" alt="{{uploadsDirectory + contentMap.payload[slid.contentMap[1]].title}}" class="img-responsive">
+                <div ng-show="!contentMap.payload[currentSlide.contentMap[1]].fileName && currentSlide"> NO IMAGE </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- bower_components -->
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/angular-socket-io/socket.js"></script>
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+    <!-- Our javascript -->
+    <script src="js/applications/WatcherApp.js"></script>
+    <script src="js/controllers/EventController.js"></script>
+    <script src="js/services/CommService.js"></script>
+    <script src="js/services/FactoryService.js"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+
+  </body>
 </html>
